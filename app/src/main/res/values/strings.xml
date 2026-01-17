@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">AF2Location</string>
+    <string name="app_title">Aerofly FS to Location</string>
+
+    <string name="label_udp_port">UDP Port</string>
+    <string name="btn_start_service">Start Background Service</string>
+    <string name="btn_stop_service">Stop Service</string>
+    <string name="toast_permission_loc">Location permission is required!</string>
+    <string name="toast_permission_grant">Please grant location permission first</string>
+    <string name="desc_instruction">Note: A persistent notification will appear after starting. Please grant \'Allow all the time\' or \'While using the app\' for the first time.</string>
+
+    <string name="notif_title">Aerofly GPS Running</string>
+    <string name="notif_content">Listening on port: %1$d</string>
+    <string name="toast_service_started">Service Started, Port: %1$d</string>
+    <string name="toast_service_stopped">Service Stopped</string>
+    <string name="toast_mock_error">Error: Please select this app in Settings->Developer options->Select mock location app!</string>
+</resources>

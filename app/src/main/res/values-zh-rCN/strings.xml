@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">AF2Location</string>
+    <string name="app_title">Aerofly FS to Location</string>
+
+    <string name="label_udp_port">UDP 端口</string>
+    <string name="btn_start_service">启动后台服务</string>
+    <string name="btn_stop_service">停止服务</string>
+    <string name="toast_permission_loc">必须授予位置权限才能运行！</string>
+    <string name="toast_permission_grant">请先授予位置权限</string>
+    <string name="desc_instruction">说明: 启动后通知栏会出现常驻通知。首次启动请务必点击\'允许\'定位权限(选择\'使用App时允许\')。</string>
+
+    <string name="notif_title">Aerofly GPS 运行中</string>
+    <string name="notif_content">监听端口: %1$d | 保持后台活跃</string>
+    <string name="toast_service_started">服务已启动，端口: %1$d</string>
+    <string name="toast_service_stopped">服务已停止</string>
+    <string name="toast_mock_error">错误: 请在设置->开发者选项->选择模拟位置信息应用中选择本应用</string>
+</resources>
