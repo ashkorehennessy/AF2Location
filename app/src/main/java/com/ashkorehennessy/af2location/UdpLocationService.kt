@@ -12,6 +12,7 @@ import kotlinx.coroutines.isActive
 import android.location.Location
 import android.location.LocationManager
 import android.location.provider.ProviderProperties
+import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.os.IBinder
 import android.os.SystemClock
@@ -29,10 +30,25 @@ class UdpLocationService : Service() {
     private val serviceScope = CoroutineScope(Dispatchers.IO + serviceJob)
     private var socket: DatagramSocket? = null
     private var isRunning = false
+    private var multicastLock: WifiManager.MulticastLock? = null
 
     companion object {
         const val CHANNEL_ID = "AF2_GPS_CHANNEL"
         const val ACTION_STOP = "STOP_SERVICE"
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+
+        try {
+            val wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+            multicastLock = wifiManager.createMulticastLock("AF2LocationLock").apply {
+                setReferenceCounted(true)
+                acquire()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -47,7 +63,9 @@ class UdpLocationService : Service() {
             isRunning = true
             createNotificationChannel()
 
-            startForeground(1, createNotification(port), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
+            try {
+                startForeground(1, createNotification(port), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
+            } catch (_: Exception) {}
 
             Toast.makeText(this, getString(R.string.toast_service_started, port), Toast.LENGTH_SHORT).show()
             serviceScope.launch {
@@ -62,6 +80,12 @@ class UdpLocationService : Service() {
         isRunning = false
         socket?.close()
         serviceJob.cancel()
+
+        try {
+            if (multicastLock?.isHeld == true) {
+                multicastLock?.release()
+            }
+        } catch (_: Exception) {}
 
         try {
             val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
