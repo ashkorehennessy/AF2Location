@@ -1,4 +1,7 @@
-# AF2Location
+<h1>
+  <img src="./app/src/main/ic_launcher-playstore.png" alt="AF2Location Icon" height="64" style="border-radius: 16px; vertical-align: middle; margin-right: 8px;">
+  AF2Location
+</h1>
 
 [**中文**](README_CN.md)
 

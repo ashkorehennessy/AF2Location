@@ -1,4 +1,7 @@
-# AF2Location
+<h1>
+  <img src="./app/src/main/ic_launcher-playstore.png" alt="AF2Location Icon" height="64" style="border-radius: 16px; vertical-align: middle; margin-right: 8px;">
+  AF2Location
+</h1>
 
 AF2Location 是一个轻量级的 Android 桥接工具，用于将 **Aerofly FS 2** 和 **Aerofly FS 4** 的飞行遥测数据转发给 Android 系统的 **模拟位置** 服务。
 
